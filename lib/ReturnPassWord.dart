@@ -258,6 +258,7 @@ class ReturnPassWord_1 extends StatelessWidget {
                     ),
                     // Product size and description
 
+
                     Text(
                       'ادخل رقم الجوال المرتبط يحسابك وسنرسل\n رسالة خاصة لك لإعادة تعيين كلمة المرور\nالخاصة بك',
                       textAlign: TextAlign.center,
