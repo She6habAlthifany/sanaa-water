@@ -5,9 +5,14 @@ import 'Home.dart';
 import 'ReturnPassWord.dart';
 import 'logUp.dart';
 
-class login extends StatelessWidget {
+class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
+  @override
+  State<login> createState() => _loginState();
+}
+
+class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +20,8 @@ class login extends StatelessWidget {
         children: [
           Positioned(
             child: Container(
-              height: 600,
-              width: 550,
+              height: double.infinity,
+              // width: 550,
               decoration: BoxDecoration(
                 border: Border.all(
                     // color: Colors.blue, // لون الإطار
@@ -38,7 +43,7 @@ class login extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(
-                margin: EdgeInsets.all(15),
+                // margin: EdgeInsets.all(15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -71,42 +76,79 @@ class login extends StatelessWidget {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding:  EdgeInsets.symmetric(
                           horizontal: 15.0, vertical: 5.0),
                       child: Column(children: [
                         Container(
                           height: 50,
-                          child: TextField(
+                          child:
+                          TextFormField(
                             decoration: InputDecoration(
-                              hintText: 'رقم الجوال +967',
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40),
-                                // borderSide: BorderSide.none,
-                              ),
+                              labelText: 'Password',
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.lock),
+
                             ),
-                            textAlign: TextAlign.end,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              if (value.length < 6) {
+                                return 'Password must be at least 6 characters';
+                              }
+                              return null;
+                            },
                           ),
+                          // TextField(
+                          //   decoration: InputDecoration(
+                          //     hintText: 'رقم الجوال +967',
+                          //     filled: true,
+                          //     fillColor: Colors.white,
+                          //     border: OutlineInputBorder(
+                          //       borderRadius: BorderRadius.circular(40),
+                          //       // borderSide: BorderSide.none,
+                          //     ),
+                          //   ),
+                          //   textAlign: TextAlign.end,
+                          // ),
                         ),
                         SizedBox(
                           height: 8,
                         ),
                         Container(
                           height: 50,
-                          child: TextField(
+                          child:
+                          TextFormField(
                             decoration: InputDecoration(
-                              hintText: 'كلمة المرور',
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40),
-                                // borderSide: BorderSide.none,
-                              ),
+                              labelText: 'Email',
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.email),
                             ),
-                            textAlign: TextAlign.end,
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                                return 'Please enter a valid email';
+                              }
+                              return null;
+                            },
                           ),
                         ),
+                            //   TextField(
+                        //     decoration: InputDecoration(
+                        //       hintText: 'كلمة المرور',
+                        //       filled: true,
+                        //       fillColor: Colors.white,
+                        //       border: OutlineInputBorder(
+                        //         borderRadius: BorderRadius.circular(40),
+                        //         // borderSide: BorderSide.none,
+                        //       ),
+                        //     ),
+                        //     textAlign: TextAlign.end,
+                        //   ),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(

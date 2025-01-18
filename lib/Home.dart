@@ -165,8 +165,8 @@ class _HomeState extends State<Home> {
                   color: Colors.blue,
                 )
               : _currentIndex == 2
-                  ? onBoarding1()
-                  : onBoarding2(),
+                  ? OnBoarding1()
+                  : SizedBox(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {

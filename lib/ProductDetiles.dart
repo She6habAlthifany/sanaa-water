@@ -49,46 +49,48 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 1,
-        title: Text(
+        // elevation: 1,
+        title: const Text(
           'تفاصيل',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        leading: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.shopping_cart, color: Colors.black),
+                onPressed: _viewCart,
+              ),
+              if (cartItemCount > 0)
+                Positioned(
+                  right: 4,
+                  top: 4,
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      '$cartItemCount',
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+
+        ],
+        leading:
             IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('تم الرجوع للخلف')),
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Home())
                 );
               },
             ),
-            Stack(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.shopping_cart, color: Colors.black),
-                  onPressed: _viewCart,
-                ),
-                if (cartItemCount > 0)
-                  Positioned(
-                    right: 4,
-                    top: 4,
-                    child: CircleAvatar(
-                      radius: 10,
-                      backgroundColor: Colors.red,
-                      child: Text(
-                        '$cartItemCount',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ],
-        ),
+
+
+
+
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

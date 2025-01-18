@@ -16,7 +16,7 @@ class SanaaWater extends StatelessWidget {
             child: SvgPicture.asset('images/ballwater.svg'),
           ),
           Center(
-            child: SvgPicture.asset('images/image.svg'),
+            child: SvgPicture.asset('images/image.svg',fit: BoxFit.fill,),
           ),
           Positioned(
             bottom: 8,
@@ -31,7 +31,7 @@ class SanaaWater extends StatelessWidget {
             child: ListTile(
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => onBoarding1()),
+                MaterialPageRoute(builder: (context) => OnBoarding1()),
               ),
             ),
           ),
