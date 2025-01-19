@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projec_prototyp/Home.dart';
-import 'package:projec_prototyp/Splash.dart';
+import 'package:projec_prototyp/AboutUs.dart';
 import 'package:flutter/material.dart';
 
 // void main() {
@@ -49,7 +49,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // elevation: 1,
         title: const Text(
           'تفاصيل',
           style: TextStyle(color: Colors.black),
@@ -77,16 +76,98 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
             ],
           ),
-
         ],
-        leading:
-            IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.black),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Home())
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+              ),
+              child: Text(
+                'القائمة الجانبية',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('الرئيسية'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.water_drop_rounded),
+              title: Text('عن التطبيق'),
+              onTap: () {
+                Navigator.pop(context);
+                _viewCart();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('من نحن'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutUs()),
+                );
+                // Navigate to settings page
+              },
+            ), ListTile(
+              leading: Icon(Icons.social_distance),
+              title:Text('مواقع التواصل الأجتماعي'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to settings page
+              },
+            ),
+            SizedBox(
+              height: 5,
+              child: Divider(color: Colors.black,),),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Facebook'),
+                  Text('X'),
+                  Text('Enstagram'),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('تسجيل الخروج'),
+              onTap: () {
+                Navigator.pop(context);
+                // Add logout functionality
+              },
+            ),
+          ],
+        ),
+
 
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:projec_prototyp/Home.dart';
 import 'package:projec_prototyp/dash.dart';
 import 'package:projec_prototyp/Splash.dart';
@@ -7,6 +8,7 @@ import 'package:projec_prototyp/onBoardingPages.dart';
 import 'package:projec_prototyp/Home.dart';
 import 'package:projec_prototyp/ProductDetiles.dart';
 import 'package:projec_prototyp/Login.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -21,7 +23,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Sana'a Water Shop",
       theme: ThemeData( ),

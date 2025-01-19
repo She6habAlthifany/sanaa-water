@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:projec_prototyp/ProductDetiles.dart';
 import 'package:projec_prototyp/onBoardingPages.dart';
+import 'package:projec_prototyp/AboutUs.dart';
+import 'package:projec_prototyp/AboutApp.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -11,10 +16,157 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  int itemCount = 3; // Initial quantity
+  double itemPrice = 1.7; // Price per item
+  int cartItemCount = 0; // Number of items in the cart
+
+  void _addToCart() {
+    setState(() {
+      cartItemCount += itemCount; // Add current quantity to cart
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('$itemCount عناصر أُضيفت إلى السلة')),
+    );
+  }
+
+  void _viewCart() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('تم فتح السلة. يوجد $cartItemCount عناصر.')),
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'الرئيسية',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.shopping_cart, color: Colors.black),
+                onPressed: _viewCart,
+              ),
+              if (cartItemCount > 0)
+                Positioned(
+                  right: 4,
+                  top: 4,
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      '$cartItemCount',
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ],
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+
+              ),
+              child: Text(
+                'من نحن',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('الرئيسية'),
+              onTap: () {
+                // Navigator.pop(context); // Close the drawer
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => Home()),
+                // );
+                Get.to(Home());
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.water_drop_rounded),
+              title: Text('عن التطبيق'),
+              onTap: () {
+                // Navigator.pop(context);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => AboutApp()),
+                // );
+                Get.to(AboutApp());
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('من نحن'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to settings page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutUs()),
+                );
+              },
+            ), ListTile(
+              leading: Icon(Icons.social_distance),
+              title:Text('مواقع التواصل الأجتماعي'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to settings page
+              },
+            ),
+            SizedBox(
+              height: 5,
+              child: Divider(color: Colors.black,),),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Facebook'),
+                  Text('X'),
+                  Text('Enstagram'),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('تسجيل الخروج'),
+              onTap: () {
+                Navigator.pop(context);
+                // Add logout functionality
+              },
+            ),
+          ],
+        ),
+      ),
       body: _currentIndex == 0
           ? SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -23,43 +175,7 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 30,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Stack(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.shopping_cart,
-                              color: Colors.blue,
-                              size: 30,
-                            ),
-                          ),
-                          CircleAvatar(
-                            radius: 9,
-                            backgroundColor: Colors.purple,
-                            child: Text(
-                              '3',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.menu,
-                          color: Colors.blue,
-                          size: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     // mainAxisAlignment: MainAxisAlignment.end,
