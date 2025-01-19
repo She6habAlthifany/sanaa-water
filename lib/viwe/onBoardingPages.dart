@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:projec_prototyp/Home.dart';
+import 'package:projec_prototyp/viwe/Home.dart';
 
 class OnBoarding1 extends StatefulWidget {
   @override
@@ -10,7 +9,7 @@ class OnBoarding1 extends StatefulWidget {
 
 class _OnBoarding1State extends State<OnBoarding1> {
   int _selectedIndex = 0; // Keeps track of the selected icon index
-  List<String> _texts = [
+  final List<String> _texts = [
     'النص الأول: هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
     'النص الثاني: هذا النص هو مثال آخر على تغيير النصوص بشكل ديناميكي',
     'النص الثالث: نص نهائي يوضح التنقل بين النصوص',

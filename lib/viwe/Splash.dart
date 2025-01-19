@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:projec_prototyp/onBoardingPages.dart';
+import 'package:get/get.dart';
+import 'package:projec_prototyp/viwe/onBoardingPages.dart';
+
+import '../controller/product_detiles_controller.dart';
 
 class SanaaWater extends StatelessWidget {
+  // ProductDetailsController controller = Get.put(ProductDetailsController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

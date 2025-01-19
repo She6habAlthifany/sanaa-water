@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projec_prototyp/Home.dart';
+import 'package:get/get.dart';
+import 'package:projec_prototyp/viwe/Home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projec_prototyp/controller/product_detiles_controller.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutApp extends StatelessWidget {
+  ProductDetailsController productDetailsController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,14 +14,14 @@ class AboutUs extends StatelessWidget {
         elevation: 1,
         centerTitle: true,
         title: Text(
-          'من نحن',
+          'عن التطبيق',
           style: TextStyle(
             color: Colors.blue,
             fontWeight: FontWeight.bold,
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black),
           onPressed: () {
             // ضع هنا الإجراء المناسب عند الضغط على زر الرجوع
             Navigator.push(
@@ -44,9 +47,11 @@ class AboutUs extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 10,
                   backgroundColor: Colors.red,
-                  child: Text(
-                    '3', // عدد العناصر في السلة
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                  child: Obx(
+    () => Text(
+                      productDetailsController.cartItemCount.value.toString(),// عدد العناصر في السلة
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -64,25 +69,23 @@ class AboutUs extends StatelessWidget {
               child: SvgPicture.asset('images/image.svg',),
             ),
             SizedBox(height: 15),
-            Text(
-              'ماء شرب طبيعي نقي',
+            Text('تطبيق مياه صنعاء',
               style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: Colors.blueAccent,
+                fontSize: 22,
+                height: 1.8,
+                color: Colors.grey[800],
               ),
             ),
-            SizedBox(height: 16),
             Expanded(
               child: SingleChildScrollView(
-                child: Text(
-                  'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ... ' * 6,
-                  style: TextStyle(
-                    fontSize: 16,
+                child:Text(' اطلقنا التطبيق في السوق اليمني لكي يسهل\n للعميل خدمة حجز منتجاتنا دون اي تعب او مشقة\n هدف التطبيق نيل رضا العملاء وكسب محبتهم\n كما يوجد توصيل لجميع مناطق العاصمة صنعاء\n مجااااناً',
+                style: TextStyle(
+                    fontSize: 20,
                     height: 1.8,
                     color: Colors.grey[800],
                   ),
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.right,
+
                 ),
               ),
             ),
